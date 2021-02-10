@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SuneApp</string>
+    <string name="battery_status_btn">Battery status</string>
 </resources>
