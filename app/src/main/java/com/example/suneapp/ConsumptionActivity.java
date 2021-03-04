@@ -1,10 +1,10 @@
 package com.example.suneapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -21,7 +21,12 @@ public class ConsumptionActivity extends AppCompatActivity {
     }
 
     public void returnToHome(View view) {
-        Intent homeIntent =  new Intent(this, MainActivity.class);
+        Intent homeIntent = new Intent(this, MainActivity.class);
         startActivity(homeIntent);
+    }
+
+    public void runCommand(View view) {
+        Intent runCommand = new Intent(this, TreeViewActivity.class);
+        startActivity(runCommand);
     }
 }

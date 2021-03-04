@@ -26,4 +26,14 @@
         app:srcCompat="@drawable/abc_vector_test"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="16dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="runCommand"
+        android:text="Button"
+        tools:layout_editor_absoluteX="141dp"
+        tools:layout_editor_absoluteY="469dp"
+        tools:text="Run Command" />
 </androidx.constraintlayout.widget.ConstraintLayout>
