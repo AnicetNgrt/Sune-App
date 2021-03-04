@@ -1,24 +1,39 @@
-package com.example.suneapp;
+package com.example.suneapp.activities;
 
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.example.suneapp.R;
+
+import java.util.List;
 
 import moe.leer.tree2view.TreeView;
 import moe.leer.tree2view.module.DefaultTreeNode;
 
-public class TreeViewActivity extends AppCompatActivity {
+public class ApplicationTreeViewActivity extends AppCompatActivity {
 
     private static final String TAG = "TreeViewActivity";
     private DefaultTreeNode<String> root;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tree_view);
+        setContentView(R.layout.activity_application_tree_view);
         initData();
         initView();
+
+//        // run on android devices with max os version at 10
+//        PackageManager packageManager = this.getApplicationContext().getPackageManager();
+//        @SuppressLint("QueryPermissionsNeeded") List<ApplicationInfo> packages =  packageManager.getInstalledApplications(PackageManager.GET_META_DATA);
+//        packages.forEach(app -> Log.d(TAG, "Package name:" + app.packageName));
     }
 
     private void initData() {
@@ -48,5 +63,4 @@ public class TreeViewActivity extends AppCompatActivity {
         treeView.setDefaultAnimation(true);
         treeView.requestLayout();
     }
-
 }

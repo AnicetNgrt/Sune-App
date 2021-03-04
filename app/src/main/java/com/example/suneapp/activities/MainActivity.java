@@ -1,4 +1,4 @@
-package com.example.suneapp;
+package com.example.suneapp.activities;
 
 import android.content.Intent;
 import android.os.BatteryManager;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.suneapp.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void launchConsumptionActivity(View view) {
-        Intent consumptionIntent = new Intent(this, ConsumptionActivity.class);
+        Intent consumptionIntent = new Intent(this, MainActivity.class);
         startActivity(consumptionIntent);
     }
 }

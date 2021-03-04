@@ -9,9 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SuneApp">
-        <activity android:name=".TreeViewActivity"></activity>
-        <activity android:name=".ConsumptionActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.ApplicationTreeViewActivity"></activity>
+        <activity android:name=".activities.LogsActivity" />
+        <activity android:name=".activities.AuthenticationActivity" />
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
