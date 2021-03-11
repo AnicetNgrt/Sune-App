@@ -1,18 +1,13 @@
 package com.example.suneapp.activities;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.suneapp.R;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.List;
+import com.example.suneapp.R;
 
 import moe.leer.tree2view.TreeView;
 import moe.leer.tree2view.module.DefaultTreeNode;
@@ -37,24 +32,24 @@ public class ApplicationTreeViewActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        root = new DefaultTreeNode<String>("Root");
-        root.addChild(new DefaultTreeNode<String>("Child1"));
+        root = new DefaultTreeNode<String>("User application");
+        root.addChild(new DefaultTreeNode<String>("com.google.gmail"));
         Log.d(TAG, "root's depth: " + root.getDepth());
 
-        DefaultTreeNode<String> child2 = new DefaultTreeNode<String>("Child2");
+        DefaultTreeNode<String> child2 = new DefaultTreeNode<>("com.facebook");
         //Important: after create a node your should immediately add it.
         root.addChild(child2);
 
-        DefaultTreeNode<String> childA = new DefaultTreeNode<String>("ChildA");
+        DefaultTreeNode<String> childA = new DefaultTreeNode<>("ChildA");
         child2.addChild(childA);
-        child2.addChild(new DefaultTreeNode<String>("ChildB"));
-        child2.addChild(new DefaultTreeNode<String>("ChildC"));
+        child2.addChild(new DefaultTreeNode<>("ChildB"));
+        child2.addChild(new DefaultTreeNode<>("ChildC"));
 
 
         Log.d(TAG, "childA's depth: " + childA.getDepth());
         Log.d(TAG, "child2's depth: " + child2.getDepth());
-        root.addChild(new DefaultTreeNode<String>("Child3"));
-        root.addChild(new DefaultTreeNode<String>("Child4"));
+        root.addChild(new DefaultTreeNode<>("Child3"));
+        root.addChild(new DefaultTreeNode<>("Child4"));
     }
 
     private void initView() {
