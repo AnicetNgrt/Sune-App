@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1025687787225",
+    "firebase_url": "https://sune-app-paris-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "sune-app-paris",
+    "storage_bucket": "sune-app-paris.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1025687787225:android:75926bd4a295b7b7f1d0c8",
+        "android_client_info": {
+          "package_name": "com.example.suneapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1025687787225-d2rnmjlofeeopr44refa4ssujmkfu6ip.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDwbzzxxpIr_SJM_6z2prWWE2XG7h94r4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1025687787225-d2rnmjlofeeopr44refa4ssujmkfu6ip.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
