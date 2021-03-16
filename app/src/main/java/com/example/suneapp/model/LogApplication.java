@@ -2,28 +2,55 @@ package com.example.suneapp.model;
 
 import androidx.annotation.NonNull;
 
-import java.util.Date;
+import com.google.firebase.Timestamp;
+
+import java.util.List;
+import java.util.UUID;
 
 public class LogApplication {
     private final String id;
-    private final Date date;
+    private final String owner;
+    private final Timestamp timestamp;
 
-    public LogApplication(String id, Date date) {
+    private final List<Application> data;
+
+    public LogApplication(String owner, Timestamp timestamp, List<Application> data) {
+        this.id = UUID.randomUUID().toString();
+        this.owner = owner;
+        this.timestamp = timestamp;
+        this.data = data;
+    }
+
+    public LogApplication(String id, String owner, Timestamp timestamp, List<Application> data) {
         this.id = id;
-        this.date = date;
+        this.owner = owner;
+        this.timestamp = timestamp;
+        this.data = data;
     }
 
     public String getId() {
         return id;
     }
 
-    public Date getDate() {
-        return date;
+    public String getOwner() {
+        return owner;
     }
 
-    @NonNull
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
+
     @Override
     public String toString() {
-        return "ID: " + getId() + "/ DATE: " + getDate();
+        return "LogApplication{" +
+                "id='" + id + '\'' +
+                ", owner='" + owner + '\'' +
+                ", timestamp=" + timestamp +
+                ", data=" + data +
+                '}';
+    }
+
+    public List<Application> getData() {
+        return data;
     }
 }

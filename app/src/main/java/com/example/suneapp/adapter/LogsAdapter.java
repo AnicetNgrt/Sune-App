@@ -1,7 +1,5 @@
 package com.example.suneapp.adapter;
 
-import android.annotation.SuppressLint;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.suneapp.R;
 import com.example.suneapp.model.LogApplication;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 
 import java.util.List;
 
@@ -74,8 +69,7 @@ public class LogsAdapter extends RecyclerView.Adapter<LogsAdapter.ViewHolder> {
         LogApplication logApplication = data.get(position);
         holder.getLogId().setText(logApplication.getId());
 
-        @SuppressLint("SimpleDateFormat") DateFormat df = new SimpleDateFormat("HH:mm");
-        String date = df.format(logApplication.getDate());
+        String date = logApplication.getTimestamp().toString();
         holder.getLogHour().setText(date);
     }
 
