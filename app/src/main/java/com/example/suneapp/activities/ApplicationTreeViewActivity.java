@@ -8,6 +8,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.suneapp.R;
+import com.example.suneapp.model.LogApplication;
 
 import moe.leer.tree2view.TreeView;
 import moe.leer.tree2view.module.DefaultTreeNode;
@@ -22,6 +23,8 @@ public class ApplicationTreeViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_application_tree_view);
+        LogApplication app = (LogApplication) getIntent().getSerializableExtra("logApplication");
+        Log.i(TAG, app.toString());
         initData();
         initView();
 

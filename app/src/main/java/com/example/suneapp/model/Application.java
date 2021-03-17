@@ -1,15 +1,13 @@
 package com.example.suneapp.model;
 
-public class Application {
-    private final String appID;
-    private final String appName;
-    private final String packageName;
+import java.io.Serializable;
 
-    public Application(String appID, String appName, String packageName) {
-        this.appID = appID;
-        this.appName = appName;
-        this.packageName = packageName;
-    }
+public class Application implements Serializable {
+    private String appID;
+    private String appName;
+    private String packageName;
+
+    public Application(){}
 
     public String getAppID() {
         return appID;

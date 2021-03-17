@@ -9,12 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.suneapp.R;
-import com.example.suneapp.model.LogApplication;
+import com.example.suneapp.model.LogApplicationDocument;
 
 import java.util.List;
 
 public class LogsAdapter extends RecyclerView.Adapter<LogsAdapter.ViewHolder> {
-    private final List<LogApplication> data;
+    private List<LogApplicationDocument> data;
     private final OnLogListener mOnLogListener;
 
     public interface OnLogListener {
@@ -49,7 +49,12 @@ public class LogsAdapter extends RecyclerView.Adapter<LogsAdapter.ViewHolder> {
         }
     }
 
-    public LogsAdapter(List<LogApplication> data, OnLogListener mOnLogListener) {
+    public LogsAdapter(OnLogListener mOnLogListener){
+        this.mOnLogListener = mOnLogListener;
+
+    }
+
+    public LogsAdapter(List<LogApplicationDocument> data, OnLogListener mOnLogListener) {
         this.data = data;
         this.mOnLogListener = mOnLogListener;
     }
@@ -66,10 +71,10 @@ public class LogsAdapter extends RecyclerView.Adapter<LogsAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        LogApplication logApplication = data.get(position);
-        holder.getLogId().setText(logApplication.getId());
+        LogApplicationDocument logApplicationDocument = data.get(position);
+        holder.getLogId().setText(logApplicationDocument.getId());
 
-        String date = logApplication.getTimestamp().toString();
+        String date = logApplicationDocument.getTimestamp().toDate().toString();
         holder.getLogHour().setText(date);
     }
 
@@ -78,4 +83,7 @@ public class LogsAdapter extends RecyclerView.Adapter<LogsAdapter.ViewHolder> {
         return data.size();
     }
 
+    public List<LogApplicationDocument> getData() {
+        return data;
+    }
 }

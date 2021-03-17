@@ -1,22 +1,16 @@
 package com.example.suneapp.model;
 
+import com.google.firebase.Timestamp;
 
-import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
-public class LogApplication implements Serializable {
-    private final String id;
-    private final String owner;
-    private final Date timestamp;
-    private final List<Application> data;
+public class LogApplicationDocument {
+    private String id;
+    private String owner;
+    private Timestamp timestamp;
+    private List<Application> data;
 
-    public LogApplication(String id, String owner, Date timestamp, List<Application> data) {
-        this.id = id;
-        this.owner = owner;
-        this.timestamp = timestamp;
-        this.data = data;
-    }
+    public LogApplicationDocument(){}
 
     public String getId() {
         return id;
@@ -26,7 +20,7 @@ public class LogApplication implements Serializable {
         return owner;
     }
 
-    public Date getTimestamp() {
+    public Timestamp getTimestamp() {
         return timestamp;
     }
 
@@ -42,5 +36,9 @@ public class LogApplication implements Serializable {
 
     public List<Application> getData() {
         return data;
+    }
+
+    public LogApplication toLogApplication () {
+        return new LogApplication(getId(), getOwner(), getTimestamp().toDate(), getData());
     }
 }
