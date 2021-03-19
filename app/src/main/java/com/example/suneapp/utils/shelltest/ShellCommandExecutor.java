@@ -1,6 +1,4 @@
-package com.example.suneapp.utils;
-
-import android.util.Log;
+package com.example.suneapp.utils.shelltest;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -8,33 +6,25 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
-public class RunCommand {
-
-    public static final String TAG = "[MYCLASS]";
+public class ShellCommandExecutor {
     public static final String COMMAND_SH = "sh";
     public static final String COMMAND_LINE_END = "\n";
     public static final String COMMAND_EXIT = "exit\n";
     private static final boolean ISDEBUG = true;
 
-    public static void run(String command) {
-        System.out.println("oaidhzaidzadoazhdazoidhazodazhdozihdazidhazodizahdiodhazdoiazhdoazihdzaoidhaziodhaz");
-        execute(command);
-    }
-
-    //from  w  ww .  j  av a  2s.c o  m
     public static List<String> execute(String command) {
         return execute(new String[]{command});
     }
 
     public static List<String> execute(String[] commands) {
+        // Initialisation des variables
         List<String> results = new ArrayList<String>();
         int status = -1;
         if (commands == null || commands.length == 0) {
             return null;
         }
-        debug("execute command start : " + commands);
+        //System.out.println("execute command start : " + commands);
         Process process = null;
         BufferedReader successReader = null;
         BufferedReader errorReader = null;
@@ -42,42 +32,46 @@ public class RunCommand {
 
         DataOutputStream dos = null;
         try {
-            // TODO
+            // Création d'un contexte d'exécution standard avec la commande sh
+            // Si on exécutais la commande tout de suite on serait dans un contexte
+            // limité d'android et on aurait pas toutes les commandes
             process = Runtime.getRuntime().exec(COMMAND_SH);
+            // Récupération du flux de sortie du contexte standard
             dos = new DataOutputStream(process.getOutputStream());
             for (String command : commands) {
                 if (command == null) {
                     continue;
                 }
+                // Exécution de la commande dans le contexte standard
                 dos.write(command.getBytes());
                 dos.writeBytes(COMMAND_LINE_END);
                 dos.flush();
             }
+            // Sortie du contexte d'exécution à l'aide de la commande exit
             dos.writeBytes(COMMAND_EXIT);
             dos.flush();
 
+            // Attente de la fin du processus d'exécution de la commande
             status = process.waitFor();
 
+            // Lecture du message de retour en mode erreur si erreur ou en mode succès si succès
             errorMsg = new StringBuilder();
-            successReader = new BufferedReader(new InputStreamReader(
-                    process.getInputStream()));
-            errorReader = new BufferedReader(new InputStreamReader(
-                    process.getErrorStream()));
+            successReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            errorReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
             String lineStr;
             while ((lineStr = successReader.readLine()) != null) {
                 results.add(lineStr);
-                debug(" command line item : " + lineStr);
+                //System.out.println(lineStr);
             }
             while ((lineStr = errorReader.readLine()) != null) {
                 errorMsg.append(lineStr);
             }
-
-        } catch (IOException e) {
-            e.printStackTrace();
+            // gestion des erreurs d'IO qui auraient pu avoir lieu à l'exécution
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
+                // fermeture de l'IO de l'exécution et de lecture des résultats
                 if (dos != null) {
                     dos.close();
                 }
@@ -95,20 +89,7 @@ public class RunCommand {
                 process.destroy();
             }
         }
-        debug(String.format(Locale.FRANCE,
-                "execute command end,errorMsg:%s,and status %d: ",
-                errorMsg, status));
+        //System.out.println(String.format(Locale.FRANCE, "execute command end,errorMsg:%s,and status %d: ", errorMsg, status));
         return results;
-    }
-
-    /**
-     * DEBUG LOG
-     *
-     * @param message
-     */
-    private static void debug(String message) {
-        if (ISDEBUG) {
-            Log.d(TAG, message);
-        }
     }
 }

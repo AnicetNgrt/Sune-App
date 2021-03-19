@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">SuneApp</string>
     <string name="battery_status_btn">Battery status</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="login_btn_txt">Login</string>
+    <string name="application_logo_desc">Application logo</string>
+    <string name="results_title">This is your saves</string>
+    <string name="run_analyzer_txt">Run analyzer</string>
 </resources>

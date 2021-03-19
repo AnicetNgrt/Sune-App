@@ -14,45 +14,8 @@ import com.example.suneapp.model.LogApplicationDocument;
 import java.util.List;
 
 public class LogsAdapter extends RecyclerView.Adapter<LogsAdapter.ViewHolder> {
-    private List<LogApplicationDocument> data;
     private final OnLogListener mOnLogListener;
-
-    public interface OnLogListener {
-        void onLogClicked(int position);
-    }
-
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private final TextView logId;
-        private final TextView logHour;
-        private final OnLogListener onLogListener;
-
-        public ViewHolder(@NonNull View itemView, OnLogListener onLogListener) {
-            super(itemView);
-            this.onLogListener = onLogListener;
-            // reference text view on log_item.xml
-            this.logId = itemView.findViewById(R.id.log_id_textView);
-            this.logHour = itemView.findViewById(R.id.log_hour_textView);
-            itemView.setOnClickListener(this);
-        }
-
-        public TextView getLogId() {
-            return logId;
-        }
-
-        public TextView getLogHour() {
-            return logHour;
-        }
-
-        @Override
-        public void onClick(View v) {
-            onLogListener.onLogClicked(getAdapterPosition());
-        }
-    }
-
-    public LogsAdapter(OnLogListener mOnLogListener){
-        this.mOnLogListener = mOnLogListener;
-
-    }
+    private List<LogApplicationDocument> data;
 
     public LogsAdapter(List<LogApplicationDocument> data, OnLogListener mOnLogListener) {
         this.data = data;
@@ -72,7 +35,6 @@ public class LogsAdapter extends RecyclerView.Adapter<LogsAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         LogApplicationDocument logApplicationDocument = data.get(position);
-        holder.getLogId().setText(logApplicationDocument.getId());
 
         String date = logApplicationDocument.getTimestamp().toDate().toString();
         holder.getLogHour().setText(date);
@@ -85,5 +47,31 @@ public class LogsAdapter extends RecyclerView.Adapter<LogsAdapter.ViewHolder> {
 
     public List<LogApplicationDocument> getData() {
         return data;
+    }
+
+    public interface OnLogListener {
+        void onLogClicked(int position);
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        private final TextView logHour;
+        private final OnLogListener onLogListener;
+
+        public ViewHolder(@NonNull View itemView, OnLogListener onLogListener) {
+            super(itemView);
+            this.onLogListener = onLogListener;
+            // reference text view on log_item.xml
+            this.logHour = itemView.findViewById(R.id.log_hour_textView);
+            itemView.setOnClickListener(this);
+        }
+
+        public TextView getLogHour() {
+            return logHour;
+        }
+
+        @Override
+        public void onClick(View v) {
+            onLogListener.onLogClicked(getAdapterPosition());
+        }
     }
 }

@@ -43,40 +43,37 @@ public class AuthenticationActivity extends AppCompatActivity {
         boolean emailMatch = Patterns.EMAIL_ADDRESS.matcher(emailAnswer).matches();
         Pattern pwdPattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\\\\\\\S+$).{6,20}$");
 
-        if(!(emailMatch || pwdPattern.matcher(passwordAnswer).matches())){
+        if (!(emailMatch || pwdPattern.matcher(passwordAnswer).matches())) {
             Log.e(TAG, "Wrong credentials");
             Toast.makeText(getApplicationContext(),
-        "Please enter a valid email and password !", Toast.LENGTH_SHORT).show();
-        }
-        else {
-//             call Firebase authentication service, we comment that for dev purpose
+                    "Please enter a valid email and password !", Toast.LENGTH_SHORT).show();
+        } else {
+//             call Firebase authentication service
             signIn(emailAnswer, passwordAnswer);
-            if(isAuthenticated)
-//                 redirect to LogsActivity
-                startActivity(new Intent(this, LogsActivity.class));
+            if (isAuthenticated)
+//                 redirect to ResultsActivity
+                startActivity(new Intent(this, ResultsActivity.class));
         }
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-//        FirebaseUser currentUser = firebaseService.getUser();
-//        if(currentUser != null)
-//            startActivity(new Intent(this, LogsActivity.class));
+//         Check if user is signed in (non-null) and update UI accordingly.
+        Object currentUser = firebaseService.getUser();
+        if (currentUser != null)
+            startActivity(new Intent(this, ResultsActivity.class));
     }
 
     private void signIn(String email, String password) {
         firebaseService.signIn(email, password)
                 .addOnSuccessListener(this, task -> {
-                    Log.d(TAG, "signInWithEmail:success");
                     setAuthenticated(true);
                 })
                 .addOnFailureListener(this, task -> {
                     setAuthenticated(false);
-                    Log.e(TAG, "signInWithEmail:failure", task.getCause());
-                        Toast.makeText(getApplicationContext(), "Authentication failed.",
-                                Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Authentication failed.",
+                            Toast.LENGTH_SHORT).show();
                 });
     }
 

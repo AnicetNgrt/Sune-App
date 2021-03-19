@@ -8,9 +8,17 @@ public class LogApplicationDocument {
     private String id;
     private String owner;
     private Timestamp timestamp;
-    private List<Application> data;
+    private List<String> data;
 
-    public LogApplicationDocument(){}
+    public LogApplicationDocument() {
+    }
+
+    public LogApplicationDocument(String id, String owner, Timestamp timestamp, List<String> data) {
+        this.id = id;
+        this.owner = owner;
+        this.timestamp = timestamp;
+        this.data = data;
+    }
 
     public String getId() {
         return id;
@@ -34,11 +42,11 @@ public class LogApplicationDocument {
                 '}';
     }
 
-    public List<Application> getData() {
+    public List<String> getData() {
         return data;
     }
 
-    public LogApplication toLogApplication () {
+    public LogApplication toLogApplication() {
         return new LogApplication(getId(), getOwner(), getTimestamp().toDate(), getData());
     }
 }

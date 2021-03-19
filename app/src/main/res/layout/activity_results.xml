@@ -4,15 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.LogsActivity">
+    android:background="@color/dark"
+    tools:context=".activities.ResultsActivity">
 
     <TextView
         android:id="@+id/logsTextView"
         android:layout_width="229dp"
         android:layout_height="42dp"
-        android:editable="false"
+        android:fontFamily="@font/ubuntu_font"
         android:gravity="center"
-        android:text="This is your saves"
+        android:text="@string/results_title"
+        android:textColor="@color/txt_color"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,4 +30,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/phone_analyzer_id"
+        android:layout_width="192dp"
+        android:layout_height="56dp"
+        android:background="@color/purple_color"
+        android:fontFamily="@font/ubuntu_font"
+        android:onClick="runPropertiesAnalyzer"
+        android:text="@string/run_analyzer_txt"
+        android:textColor="@color/txt_color"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.937" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
