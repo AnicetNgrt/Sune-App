@@ -1,2 +1,2 @@
 # Sune
-Compte rendu : [./compte_rendu.pdf](./compte_rendu.pdf)
+Compte rendu et schéma d'architecture : [compte_rendu.pdf](./compte_rendu.pdf)
