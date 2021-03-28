@@ -23,7 +23,7 @@ public class FirebaseService {
     }
 
     public Task<QuerySnapshot> getLogs() {
-        return db.collection("logs").get();
+        return db.collection("logs").whereEqualTo("owner", mAuth.getCurrentUser().getUid()).get();
     }
 
     public Task<AuthResult> signIn(String email, String password) {
